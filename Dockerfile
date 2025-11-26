@@ -5,7 +5,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     libonig-dev \
-    && docker-php-ext-install mbstring \
+    libzip-dev \
+    libpng-dev \
+    && docker-php-ext-install mbstring zip gd \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -20,7 +22,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && rm composer-setup.php
 
 # Install Grav dependencies
-RUN composer install --no-interaction --optimize-autoloader --no-scripts
+RUN composer install --no-interaction --optimize-autoloader
 
 # Run Grav installer to initialize /user/ folder
 RUN php bin/grav install
