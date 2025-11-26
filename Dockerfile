@@ -1,8 +1,13 @@
 FROM php:8.1-cli
 
 # Install dependencies
-RUN apt-get update && apt-get install -y unzip git \
-    && docker-php-ext-install mbstring
+RUN apt-get update && apt-get install -y \
+    unzip \
+    git \
+    libonig-dev \
+    && docker-php-ext-install mbstring \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # Set working directory
 WORKDIR /app
