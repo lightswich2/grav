@@ -1,6 +1,0 @@
-[package]
-name = "grav-site"
-version = "0.1.0"
-
-[scripts]
-start = "php -S 0.0.0.0:8080 system/router.php"
